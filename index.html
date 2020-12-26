@@ -70,7 +70,7 @@
             <label for="families"> Families Only</label><br>
             </div>
           <input id="enterstate" type="text" placeholder="Enter your State name here">
-      <h5><button onclick="function getuserLocation()">Search</button></h5>
+      <h5><button onclick="function getuserLocation()" onclick="showuserPosition(position)">Search</button></h5>
       <h6 id="homless_shelters_cities"></h6>
       <p id="text" style="display:none">Here are the Men only homless shelters in this area!</p>
       <p id="homeless_shelters" style="display:none;">Shelters here</p>
@@ -105,23 +105,7 @@ function showuserPosition(position) {
   document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
 }
         
-        function stateFunction() {
-        var input, filter, ul, li, a, i, txtValue;
-        input = document.getElementById('enterstate');
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("stateUL");
-        li = ul.getElementsByTagName('li');
-
-        for (i = 0; i < li.length; i++) {
-          a = li[i].getElementsByTagName("a")[0];
-          txtValue = a.textContent || a.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-          } else {
-            li[i].style.display = "none";
-    }
-  }
-}
+        
     function checkFunction() {
       var checkbox = document.getElementById("menonly");
       var text = document.getElementById("text");
