@@ -69,79 +69,8 @@
             <input type="checkbox" id="families" name="Families" value="false" onclick="checkfFunction()" onclick="myFunction()">
             <label for="families"> Families Only</label><br>
             </div>
-          <input id="enterstate" type="text" placeholder="Enter your State name here" onkeyup="stateFunction()">
-          <ul id="stateUL">
-            <li><a href="#">Alabama</a></li>
-            <li><a href="#">Alaska</a></li>
-            <li><a href="#">Arizona</a></li>
-            <li><a href="#">Arkansas</a></li>
-          
-            <li><a href="#">California</a></li>
-            <li><a href="#">Colorado</a></li>
-            <li><a href="#">Connecticut</a></li>
-            
-            <li><a href="#">Delaware</a></li>
-            
-            <li><a href="#">Florida</a></li>
-            
-            <li><a href="#">Georgia</a></li>
-            
-            <li><a href="#">Hawaii</a></li>
-            
-            <li><a href="#">Idaho</a></li>
-            <li><a href="#">Illinois</a></li>
-            <li><a href="#">Indiana</a></li>
-            <li><a href="#">Iowa</a></li>
-            
-            <li><a href="#">Kansas</a></li>
-            <li><a href="#">Kentucky</a></li>
-            
-            <li><a href="#">Louisiana</a></li>
-            
-            <li><a href="#">Maine</a></li>
-            <li><a href="#">Maryland</a></li>
-            <li><a href="#">Massachusetts</a></li>
-            <li><a href="#">Michigan</a></li>
-            <li><a href="#">Minnesota</a></li>
-            <li><a href="#">Mississippi</a></li>
-            <li><a href="#">Missouri</a></li>
-            <li><a href="#">Montana</a></li>
-            
-            <li><a href="#">Nebraska</a></li>
-            <li><a href="#">Nevada</a></li>
-            <li><a href="#">New Hampshire</a></li>
-            <li><a href="#">New Jersey</a></li>
-            <li><a href="#">New Mexico</a></li>
-            <li><a href="#">New York</a></li>
-            <li><a href="#">North Carolina</a></li>
-            <li><a href="#">North Dakota</a></li>
-            
-            <li><a href="#">Ohio</a></li>
-            <li><a href="#">Oklahoma</a></li>
-            <li><a href="#">Oregon</a></li>
-            
-            <li><a href="#">Pennsylvania</a></li>
-            
-            <li><a href="#">Rhode Island</a></li>
-            
-            <li><a href="#">South Carolina</a></li>
-            <li><a href="#">South Dakota</a></li>
-            
-            <li><a href="#">Tennessee</a></li>
-            <li><a href="#">Texas</a></li>
-            
-            <li><a href="#">Utah</a></li>
-            
-            <li><a href="#">Vermont</a></li>
-            <li><a href="#">Virginia</a></li>
-            
-            <li><a href="#">Washington</a></li>
-            <li><a href="#">West Virginia</a></li>
-            <li><a href="#">Wisconsin</a></li>
-            <li><a href="#">Wyoming</a></li>
-          </ul>
-        </div>
-      <h5><button onclick="myFunction()">Search</button></h5>
+          <input id="enterstate" type="text" placeholder="Enter your State name here">
+      <h5><button onclick="function getuserLocation()">Search</button></h5>
       <h6 id="homless_shelters_cities"></h6>
       <p id="text" style="display:none">Here are the Men only homless shelters in this area!</p>
       <p id="homeless_shelters" style="display:none;">Shelters here</p>
@@ -153,6 +82,28 @@
       <p id="homeless_shelters" style="display:none;">Shelters here</p>
       
       <script>
+          var l = document.getElementById("enterstate");
+function getuserLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showuserPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+}
+          
+          function showuserPosition(position) {
+  var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+  var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=
+  "+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_KEY";
+
+  document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+}
         
         function stateFunction() {
         var input, filter, ul, li, a, i, txtValue;
@@ -171,19 +122,6 @@
     }
   }
 }
-        function myFunction()
-        {
-          var ga cities = ["Adel(1)•Albany(4)•Athens(2)•Atlanta(39)•Augusta(5)•Austell(2)•Carrollton(1)•Cartersville(1)•Cedartown(2)•College Park(1)•Columbus(4)•Conley(1)•Conyers(1)•Covington(1)•Dalton(1)•Decatur(4)•Douglasville(1)•Duluth(2)•Dunwoody(1)•Forest Park(1)•Gainesville(3)•Griffin(1)•Jefferson(1)•Jonesboro(2)•Lawrenceville(3)•Lithonia(1)•Macon(1)•Marietta(4)•Norcross(1)•Redan(1)•Riverdale(1)•Rome(2)•Roswell(1)•Sandy Springs(1)•Savannah(3)•Scottdale(1)•Snellville(1)•Stone Mountain(1)•Summerville(2)•Thomasville(1)•Tifton(1)•Toccoa(1)•Tucker(1)•Valdosta(1)•Warner Robins(1)•Winder(1)"]
-          var a=document.getElementById("enterstate");
-          if (a="Georgia")
-        {
-          document.getElementById("homless_shelters_cities").innerHTML=ga cities;
-      }
-    else
-      {
-    document.getElementById("homless_shelters_cities").innerHTML="You Must enter a real city name.";
-      }
-    }
     function checkFunction() {
       var checkbox = document.getElementById("menonly");
       var text = document.getElementById("text");
