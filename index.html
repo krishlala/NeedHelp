@@ -59,118 +59,97 @@
         <section id="bio">
             <h1>Homeless Shelters</h1>
             <div class="line"></div>
-            <div class="box">
-            <input type="checkbox" id="menonly" name="Men Only" value="false" onclick="checkFunction()" onclick="myFunction()">
-            <label for="menonly"> Men Only</label><br>
-            <input type="checkbox" id="womenonly" name="Women Only" value="false" onclick="checkwFunction()" onclick="myFunction()">
-            <label for="womenonly"> Women Only</label><br>
-            <input type="checkbox" id="Womenchildren" name="Women and Children" value="false" onclick="checkwcFunction()" onclick="myFunction()">
-            <label for="Womenchildren"> Women and Children</label><br>
-            <input type="checkbox" id="families" name="Families" value="false" onclick="checkfFunction()" onclick="myFunction()">
-            <label for="families"> Families Only</label><br>
-            </div>
-          <input id="enterstate" type="text" placeholder="Enter your State name here">
-      <h5><button onclick="function getuserLocation()" onclick="showuserPosition(position)">Search</button></h5>
-      <h6 id="homless_shelters_cities"></h6>
-      <p id="text" style="display:none">Here are the Men only homless shelters in this area!</p>
-      <p id="homeless_shelters" style="display:none;">Shelters here</p>
-      <p id="text2" style="display:none">Here are the women only homless shelters in this area!</p>
-      <p id="homeless_shelters" style="display:none;">Shelters here</p>
-      <p id="text3" style="display:none">Here are the women and Children only homless shelters in this area!</p>
-      <p id="homeless_shelters" style="display:none;">Shelters here</p>
-      <p id="text4" style="display:none">Here are the family only homless shelters in this area!</p>
-      <p id="homeless_shelters" style="display:none;">Shelters here</p>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for states here...">
+
+<ul id="myUL">
+  <li><a href="#">Alabama</a></li>
+  <li><a href="#">Alaska</a></li>
+  <li><a href="#">Arizona</a></li>
+  <li><a href="#">Arkansas</a></li>
+
+  <li><a href="#">California</a></li>
+  <li><a href="#">Colorado</a></li>
+  <li><a href="#">Connecticut</a></li>
+  
+  <li><a href="#">Delaware</a></li>
+  
+  <li><a href="#">Florida</a></li>
+  
+  <li><a href="#">Georgia</a></li>
+  
+  <li><a href="#">Hawaii</a></li>
+  
+  <li><a href="#">Idaho</a></li>
+  <li><a href="#">Illinois</a></li>
+  <li><a href="#">Indiana</a></li>
+  <li><a href="#">Iowa</a></li>
+  
+  <li><a href="#">Kansas</a></li>
+  <li><a href="#">Kentucky</a></li>
+  
+  <li><a href="#">Louisiana</a></li>
+  
+  <li><a href="#">Maine</a></li>
+  <li><a href="#">Maryland</a></li>
+  <li><a href="#">Massachusetts</a></li>
+  <li><a href="#">Michigan</a></li>
+  <li><a href="#">Minnesota</a></li>
+  <li><a href="#">Mississippi</a></li>
+  <li><a href="#">Missouri</a></li>
+  <li><a href="#">Montana</a></li>
+  
+  <li><a href="#">Nebraska</a></li>
+  <li><a href="#">Nevada</a></li>
+  <li><a href="#">New Hampshire</a></li>
+  <li><a href="#">New Mexico</a></li>
+  <li><a href="#">New York</a></li>
+  <li><a href="#">North Carolina</a></li>
+  <li><a href="#">North Dakota</a></li>
+  
+  <li><a href="#">Ohio</a></li>
+  <li><a href="#">Oklahoma</a></li>
+  <li><a href="#">Oregon</a></li>
+  
+  <li><a href="#">Pennsylvania</a></li>
+  
+  <li><a href="#">Rhode Island</a></li>
+  
+  <li><a href="#">South Carolina</a></li>
+  <li><a href="#">South Dakota</a></li>
+  
+  <li><a href="#">Tennessee</a></li>
+  <li><a href="#">Texas</a></li>
+  
+  <li><a href="#">Utah</a></li>
+  
+  <li><a href="#">Vermont</a></li>
+  <li><a href="#">Virginia</a></li>
+  
+  <li><a href="#">Washington</a></li>
+  <li><a href="#">West Virginia</a></li>
+  <li><a href="#">Wisconsin</a></li>
+   <li><a href="#">Wyoming</a></li>
+            </ul></div>
       
-      <script>
-          var l = document.getElementById("enterstate");
-function getuserLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    <script>
+        function myFunction() {
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('myInput');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByTagName('li');
+
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
   }
 }
-
-function showuserPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
-}
-          
-          function showuserPosition(position) {
-  var latlon = position.coords.latitude + "," + position.coords.longitude;
-
-  var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=
-  "+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_KEY";
-
-  document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
-}
-        
-        
-    function checkFunction() {
-      var checkbox = document.getElementById("menonly");
-      var text = document.getElementById("text");
-      var homeless_shelters = document.getElementById("homeless_shelters");
-
-      if(checkbox.checked == true) {
-        text.style.display = "block";
-        homeless_shelters.style.display = "block";
-      } else {
-        text.style.display = "none";
-        homeless_shelters.style.display = "none";
-
-        
-      }
-    }
-
-    function checkwFunction() {
-      var checkbox = document.getElementById("womenonly");
-      var text2 = document.getElementById("text2");
-      var homeless_shelters = document.getElementById("homeless_shelters");
-
-      if(checkbox.checked == true) {
-        text2.style.display = "block";
-        homeless_shelters.style.display = "block";
-      } else {
-        text2.style.display = "none";
-        homeless_shelters.style.display = "none";
-
-        
-      }
-    }
-
-    function checkwcFunction() {
-      var checkbox = document.getElementById("Womenchildren");
-      var text3 = document.getElementById("text3");
-      var homeless_shelters = document.getElementById("homeless_shelters");
-
-      if(checkbox.checked == true) {
-        text3.style.display = "block";
-        homeless_shelters.style.display = "block";
-      } else {
-        text3.style.display = "none";
-        homeless_shelters.style.display = "none";
-
-        
-      }
-    }
-
-    function checkfFunction() {
-      var checkbox = document.getElementById("families");
-      var text4 = document.getElementById("text4");
-      var homeless_shelters = document.getElementById("homeless_shelters");
-
-      if(checkbox.checked == true) {
-        text4.style.display = "block";
-        homeless_shelters.style.display = "block";
-      } else {
-        text4.style.display = "none";
-        homeless_shelters.style.display = "none";
-
-        
-      }
-    }
-      </script>
-    
+        </script>
       
             <p>
     
